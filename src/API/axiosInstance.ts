@@ -1,5 +1,12 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_GH });
+const axiosParams = {
+	baseURL: process.env.REACT_APP_GH,
+	headers: {
+		authorization: `token ${process.env.REACT_APP_TOKEN}`,
+	},
+};
+
+const axiosInstance = axios.create(axiosParams);
 
 export { axiosInstance };
