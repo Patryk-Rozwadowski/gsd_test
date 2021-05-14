@@ -1,11 +1,6 @@
 interface ITheme {
 	colors: {
-		accent: string;
-		accentLight: string;
-		dark: string;
-		border: string;
-		inactive: string;
-		separator: string;
+		primary: string;
 	};
 	styles: {
 		boxShadow: string;
