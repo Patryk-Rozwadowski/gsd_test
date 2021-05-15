@@ -12,6 +12,8 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { GrContactInfo, GrOrganization } from "react-icons/all";
+import ProfileInformations from "../ProfileInformations/ProfileInformations";
+import { PopoverContainer } from "../ProfileInformations/ProfileInformations.styled";
 
 interface IUserCard {
 	avatar_url: string;
@@ -27,7 +29,7 @@ const UserCard = ({ avatar_url, login }: IUserCard): JSX.Element => {
 			</Flex>
 
 			<Flex alignItems={"center"} flexDirection={"row"}>
-				<Popover>
+				<Popover isLazy={true}>
 					<PopoverTrigger>
 						<Button
 							border={0}
@@ -39,13 +41,12 @@ const UserCard = ({ avatar_url, login }: IUserCard): JSX.Element => {
 							Profile
 						</Button>
 					</PopoverTrigger>
-					<PopoverContent>
-						<PopoverHeader>User informations</PopoverHeader>
-						<PopoverBody>User informations</PopoverBody>
-					</PopoverContent>
+					<PopoverContainer>
+						<ProfileInformations login={login} />
+					</PopoverContainer>
 				</Popover>
 
-				<Popover>
+				<Popover isLazy={true}>
 					<PopoverTrigger>
 						<Button
 							border={0}

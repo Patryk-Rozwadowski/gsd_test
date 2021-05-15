@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Grid, theme } from "@chakra-ui/react";
 
 import { css, Global, ThemeProvider } from "@emotion/react";
-import { IUser } from "./interfaces/user.interface";
+import { IUserCommon } from "./interfaces/user.interface";
 import ClipLoader from "react-spinners/ClipLoader";
 import UsersMocked from "./userMocked.json";
 import emotionReset from "emotion-reset";
@@ -23,7 +23,7 @@ const cssReset = [
 ];
 
 function App() {
-	const [users, setUsers] = useState<IUser[]>();
+	const [users, setUsers] = useState<IUserCommon[]>();
 	// useEffect(() => {
 	// 	axiosInstance.get("/users").then(({ data }: AxiosResponse<IUser[]>) => {
 	// 		setUsers(data);
@@ -44,7 +44,7 @@ function App() {
 							{!users ? (
 								<ClipLoader />
 							) : (
-								users.map((user: IUser, index: number) => {
+								users.map((user: IUserCommon, index: number) => {
 									const { avatar_url, login } = user;
 									return <UserCard login={login} avatar_url={avatar_url} key={index} />;
 								})
