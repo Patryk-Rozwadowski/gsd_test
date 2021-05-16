@@ -4,7 +4,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { Box, Grid, Popover, PopoverTrigger, theme } from "@chakra-ui/react";
 import { Global, ThemeProvider } from "@emotion/react";
 import { IUserCommon } from "./interfaces/user.interface";
-import UsersMocked from "./userMocked.json";
 import UserCard from "./components/UserCard/UserCard";
 import { cssReset } from "./cssReset";
 import { axiosInstance } from "./API/axiosInstance";
@@ -30,10 +29,6 @@ function App() {
 		axiosInstance.get("/organizations").then(({ data }: AxiosResponse<IOrganizationCommon[]>) => {
 			setOrganizations(data);
 		});
-	}, []);
-
-	useEffect(() => {
-		setUsers(UsersMocked);
 	}, []);
 
 	return (

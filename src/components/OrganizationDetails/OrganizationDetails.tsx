@@ -17,7 +17,6 @@ const OrganizationDetails = ({ organization }: IOrganizationDetailsProps) => {
 	const [organizationsDetails, setOrganizationsDetails] = useState<IOrganizationDetails>();
 	const [organizationMembers, setOrganizationMembers] = useState<IMember[]>();
 	useEffect(() => {
-		debugger;
 		axiosInstance
 			.get(`/orgs/${organization.login}`)
 			.then(({ data }: AxiosResponse<IOrganizationDetails>) => {
