@@ -1,13 +1,12 @@
 ## Live: https://patryk-rozwadowski.github.io/gsd_test/
 
+## There is a limitation of API requests from Github API side, so if you have error 403 that means you ran out of your limit.
+
 Stack:
 - Typescript
 - React
 - Chakra-ui
 - Styled components emotion
-
-
-### There is a limitation of api requests from Github api side.
 
 
 
