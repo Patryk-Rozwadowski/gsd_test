@@ -34,7 +34,7 @@ const UserCard = ({ avatar_url, login }: IUserCard): JSX.Element => {
 						<Button
 							border={0}
 							backgroundColor={"#fff"}
-							width={"33%%"}
+							width={"100%"}
 							h={"20px"}
 							leftIcon={<GrContactInfo />}
 						>
@@ -44,24 +44,6 @@ const UserCard = ({ avatar_url, login }: IUserCard): JSX.Element => {
 					<PopoverContainer>
 						<ProfileInformations login={login} />
 					</PopoverContainer>
-				</Popover>
-
-				<Popover isLazy={true}>
-					<PopoverTrigger>
-						<Button
-							border={0}
-							label={"Organizations"}
-							leftIcon={<GrOrganization />}
-							width={"66%"}
-							backgroundColor={"#fff"}
-						>
-							Organizations
-						</Button>
-					</PopoverTrigger>
-					<PopoverContent>
-						<PopoverHeader>Organization informations</PopoverHeader>
-						<PopoverBody>Organization informations</PopoverBody>
-					</PopoverContent>
 				</Popover>
 			</Flex>
 		</Box>

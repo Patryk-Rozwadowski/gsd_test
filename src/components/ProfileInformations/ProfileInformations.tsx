@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
 import ClipLoader from "react-spinners/ClipLoader";
-import {
-	Box,
-	Button,
-	Flex,
-	Popover,
-	PopoverBody,
-	PopoverHeader,
-	PopoverTrigger,
-} from "@chakra-ui/react";
+import { Box, PopoverBody, PopoverHeader } from "@chakra-ui/react";
 import { axiosInstance } from "../../API/axiosInstance";
 import { TextHeader, TextPrimary } from "../Typography/Typography.styled";
 import { IUserDetailed } from "../../interfaces/user.interface";
 import { IRepository } from "../../interfaces/repo.interface";
-import { PopoverContainer, RepoInfoButton, RepoInfoContainer } from "./ProfileInformations.styled";
-import RepoDetails from "../RepoDetails/RepoDetails";
 import { calculateLastDay } from "../../utils/calculateDaysAgo";
 import UserRepoList from "../UserRepoList";
 
 const ProfileInformations = ({ login }: Partial<IUserDetailed>): JSX.Element => {
 	const [fetched, setFetched] = useState<boolean>(false);
 	const [userInformation, setUserInformation] = useState<IUserDetailed>();
+	const [repoPullRequestsInformation, setRepoPullRequestsInformation] = useState();
 	const [repos, setRepos] = useState<IRepository[]>();
 
 	useEffect(() => {
