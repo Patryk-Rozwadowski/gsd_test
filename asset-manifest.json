@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/gsd_test/static/js/main.b535b036.chunk.js",
-    "main.js.map": "/gsd_test/static/js/main.b535b036.chunk.js.map",
+    "main.js": "/gsd_test/static/js/main.4fd5f235.chunk.js",
+    "main.js.map": "/gsd_test/static/js/main.4fd5f235.chunk.js.map",
     "runtime-main.js": "/gsd_test/static/js/runtime-main.cada194e.js",
     "runtime-main.js.map": "/gsd_test/static/js/runtime-main.cada194e.js.map",
-    "static/js/2.f571b3d5.chunk.js": "/gsd_test/static/js/2.f571b3d5.chunk.js",
-    "static/js/2.f571b3d5.chunk.js.map": "/gsd_test/static/js/2.f571b3d5.chunk.js.map",
+    "static/js/2.00f82ead.chunk.js": "/gsd_test/static/js/2.00f82ead.chunk.js",
+    "static/js/2.00f82ead.chunk.js.map": "/gsd_test/static/js/2.00f82ead.chunk.js.map",
     "index.html": "/gsd_test/index.html",
-    "static/js/2.f571b3d5.chunk.js.LICENSE.txt": "/gsd_test/static/js/2.f571b3d5.chunk.js.LICENSE.txt"
+    "static/js/2.00f82ead.chunk.js.LICENSE.txt": "/gsd_test/static/js/2.00f82ead.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.cada194e.js",
-    "static/js/2.f571b3d5.chunk.js",
-    "static/js/main.b535b036.chunk.js"
+    "static/js/2.00f82ead.chunk.js",
+    "static/js/main.4fd5f235.chunk.js"
   ]
 }
