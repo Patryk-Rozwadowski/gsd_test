@@ -14,14 +14,16 @@ import { axiosInstance } from "../../API/axiosInstance";
 import { TextHeader, TextPrimary } from "../Typography/Typography.styled";
 import { IUserDetailed } from "../../interfaces/user.interface";
 import { IRepository } from "../../interfaces/repo.interface";
-import { GrContactInfo } from "react-icons/all";
-import { PopoverContainer } from "./ProfileInformations.styled";
+import { PopoverContainer, RepoInfoButton, RepoInfoContainer } from "./ProfileInformations.styled";
 import RepoDetails from "../RepoDetails/RepoDetails";
+import { calculateLastDay } from "../../utils/calculateDaysAgo";
+import { sort } from "../../utils/sort";
 
 const ProfileInformations = ({ login }: Partial<IUserDetailed>): JSX.Element => {
 	const [fetched, setFetched] = useState<boolean>(false);
 	const [userInformation, setUserInformation] = useState<IUserDetailed>();
-	const [repoInformation, setRepoInformation] = useState<IRepository[]>();
+	const [repos, setRepos] = useState<IRepository[]>();
+
 	useEffect(() => {
 		const ac = new AbortController();
 		Promise.all([
@@ -29,7 +31,7 @@ const ProfileInformations = ({ login }: Partial<IUserDetailed>): JSX.Element => 
 				setUserInformation(data);
 			}),
 			axiosInstance(`/users/${login}/repos`).then(({ data }: AxiosResponse<IRepository[]>) => {
-				setRepoInformation(data);
+				setRepos(data);
 			}),
 		])
 			.then(() => setFetched(true))
@@ -37,20 +39,14 @@ const ProfileInformations = ({ login }: Partial<IUserDetailed>): JSX.Element => 
 		return () => ac.abort();
 	}, [login]);
 
-	function calculateWhenUserJoinedInDays(): number {
-		const msDiff = new Date().getTime() - new Date(userInformation.created_at).getTime();
-		return Math.floor(msDiff / (1000 * 60 * 60 * 24));
-	}
-
 	function calculateIssueRatio() {
-		const allIssues = repoInformation?.reduce((acc: number, repo: IRepository): number => {
+		return repos?.reduce((acc: number, repo: IRepository): number => {
 			return acc + repo.open_issues_count;
 		}, 0);
-		return allIssues;
 	}
 
 	function calculateUserStars(): number {
-		return repoInformation?.reduce((acc: number, repo: IRepository): number => {
+		return repos?.reduce((acc: number, repo: IRepository): number => {
 			return acc + repo.stargazers_count;
 		}, 0);
 	}
@@ -66,28 +62,30 @@ const ProfileInformations = ({ login }: Partial<IUserDetailed>): JSX.Element => 
 					</PopoverHeader>
 					<PopoverBody>
 						<TextPrimary>Public repos:{userInformation.public_repos}</TextPrimary>
-						<TextPrimary>Joined: {calculateWhenUserJoinedInDays()} days ago.</TextPrimary>
+						<TextPrimary>
+							Joined: {calculateLastDay(userInformation?.created_at)} days ago.
+						</TextPrimary>
 						<TextPrimary>User's Stars: {calculateUserStars()}</TextPrimary>
 						<TextPrimary>Opened issues:{calculateIssueRatio()}</TextPrimary>
 
-						{repoInformation.map((repo: IRepository, index: number) => {
+						{repos.map((repo: IRepository, index: number) => {
 							return (
 								<Popover key={index} isLazy={true}>
-									<Flex m={"20px 0"} justifyContent={"center"}>
+									<RepoInfoContainer>
 										<TextPrimary>{repo.name}</TextPrimary>
 										<TextPrimary>{repo.stargazers_count}</TextPrimary>
 										<PopoverTrigger>
-											<Button
+											<RepoInfoButton
 												border={0}
+												ml={"15px"}
 												backgroundColor={"#fff"}
 												width={"33%%"}
 												h={"20px"}
-												leftIcon={<GrContactInfo />}
 											>
-												Repo info
-											</Button>
+												Info
+											</RepoInfoButton>
 										</PopoverTrigger>
-									</Flex>
+									</RepoInfoContainer>
 
 									<PopoverContainer>
 										<RepoDetails login={login} repoName={repo.name} />

@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Flex } from "@chakra-ui/react";
-import { axiosInstance } from "../../API/axiosInstance";
 import { AxiosResponse } from "axios";
+import { axiosInstance } from "../../API/axiosInstance";
 import { IRepositoryDetailed } from "../../interfaces/repo.interface";
 import ClipLoader from "react-spinners/ClipLoader";
 import { TextPrimary } from "../Typography/Typography.styled";
 import { IRepoPullRequest } from "../../interfaces/repoPullRequest";
 import { IRepoIssue } from "../../interfaces/repoIssue.interface";
-import styled from "@emotion/styled";
-
-const RepoInfoContainer = styled(Flex)`
-	justify-content: center;
-	flex-direction: column;
-	&:not(:first-of-type),
-	&:not(:last-of-type) {
-		border: 1px solid #ggg;
-	}
-`;
+import { RepoDetailInfoContainer } from "./RepoDetails.styled";
+import { calculateLastDay } from "../../utils/calculateDaysAgo";
+import { CommitInformation } from "../../interfaces/repoCommit.interface";
 
 const RepoDetails = ({ login, repoName }) => {
 	const [detailedRepoInformation, setDetailedRepoInformation] = useState<IRepositoryDetailed>();
 	const [repoPullRequestsInformation, setRepoPullRequestsInformation] =
 		useState<IRepoPullRequest[]>();
 	const [repoIssueInformation, setRepoIssueInformation] = useState<IRepoIssue[]>();
+	const [repoCommitsInformation, setRepoCommitsInformation] = useState<CommitInformation>();
+
 	useEffect(() => {
 		axiosInstance(`/repos/${login}/${repoName}`).then(
 			({ data }: AxiosResponse<IRepositoryDetailed>) => {
@@ -39,6 +33,12 @@ const RepoDetails = ({ login, repoName }) => {
 		axiosInstance(`/repos/${login}/${repoName}/pulls?state=all`).then(
 			({ data }: AxiosResponse<IRepoPullRequest[]>) => {
 				setRepoPullRequestsInformation(data);
+			}
+		);
+
+		axiosInstance(`/repos/${login}/${repoName}/commits/master`).then(
+			({ data }: AxiosResponse<CommitInformation>) => {
+				setRepoCommitsInformation(data);
 			}
 		);
 	}, [repoName, login]);
@@ -61,8 +61,7 @@ const RepoDetails = ({ login, repoName }) => {
 				<ClipLoader />
 			) : (
 				// TODO sort with PR
-				// TODO last commit in x days ago
-				<RepoInfoContainer>
+				<RepoDetailInfoContainer>
 					<TextPrimary>Repo name: {detailedRepoInformation?.name}</TextPrimary>
 					<TextPrimary>Number of PR: {repoPullRequestsInformation?.length}</TextPrimary>
 					<TextPrimary>Stars number: {detailedRepoInformation?.stargazers_count}</TextPrimary>
@@ -70,7 +69,16 @@ const RepoDetails = ({ login, repoName }) => {
 					<TextPrimary>
 						Pull Requests / Issues {calculatePullRequestsToIssuesRatio()}
 					</TextPrimary>
-				</RepoInfoContainer>
+
+					{!repoCommitsInformation ? (
+						<ClipLoader />
+					) : (
+						<TextPrimary>
+							Last commit: {calculateLastDay(repoCommitsInformation?.commit.committer.date)}{" "}
+							days ago
+						</TextPrimary>
+					)}
+				</RepoDetailInfoContainer>
 			)}
 		</>
 	);
