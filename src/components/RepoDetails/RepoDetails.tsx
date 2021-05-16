@@ -4,7 +4,7 @@ import { axiosInstance } from "../../API/axiosInstance";
 import { IRepositoryDetailed } from "../../interfaces/repo.interface";
 import ClipLoader from "react-spinners/ClipLoader";
 import { TextPrimary } from "../Typography/Typography.styled";
-import { IRepoPullRequest } from "../../interfaces/repoPullRequest";
+import { IRepoPullRequest } from "../../interfaces/repoPullRequest.interface";
 import { IRepoIssue } from "../../interfaces/repoIssue.interface";
 import { RepoDetailInfoContainer } from "./RepoDetails.styled";
 import { calculateLastDay } from "../../utils/calculateDaysAgo";
