@@ -7,7 +7,6 @@ import {
 	IMember,
 	IOrganizationCommon,
 	IOrganizationDetails,
-	IOrganizationRepo,
 } from "../../interfaces/organizations.interface";
 
 interface IOrganizationDetailsProps {
@@ -17,19 +16,12 @@ interface IOrganizationDetailsProps {
 const OrganizationDetails = ({ organization }: IOrganizationDetailsProps) => {
 	const [organizationsDetails, setOrganizationsDetails] = useState<IOrganizationDetails>();
 	const [organizationMembers, setOrganizationMembers] = useState<IMember[]>();
-	const [organizationRepos, setOrganizationRepos] = useState<IOrganizationRepo[]>();
 	useEffect(() => {
 		debugger;
 		axiosInstance
 			.get(`/orgs/${organization.login}`)
 			.then(({ data }: AxiosResponse<IOrganizationDetails>) => {
 				setOrganizationsDetails(data);
-			});
-
-		axiosInstance
-			.get(`/orgs/${organization.login}/repos`)
-			.then(({ data }: AxiosResponse<IOrganizationRepo[]>) => {
-				setOrganizationRepos(data);
 			});
 
 		axiosInstance

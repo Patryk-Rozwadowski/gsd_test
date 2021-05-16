@@ -1,17 +1,6 @@
 import React from "react";
-import {
-	Avatar,
-	Box,
-	Button,
-	Flex,
-	Popover,
-	PopoverBody,
-	PopoverContent,
-	PopoverHeader,
-	PopoverTrigger,
-	Text,
-} from "@chakra-ui/react";
-import { GrContactInfo, GrOrganization } from "react-icons/all";
+import { Avatar, Box, Button, Flex, Popover, PopoverTrigger, Text } from "@chakra-ui/react";
+import { GrContactInfo } from "react-icons/all";
 import ProfileInformations from "../ProfileInformations/ProfileInformations";
 import { PopoverContainer } from "../ProfileInformations/ProfileInformations.styled";
 

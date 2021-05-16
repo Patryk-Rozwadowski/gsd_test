@@ -1,3 +1,4 @@
+import React from "react";
 import {
 	PopoverContainer,
 	RepoInfoButton,
@@ -6,7 +7,6 @@ import {
 import { TextPrimary } from "./Typography/Typography.styled";
 import { Popover, PopoverTrigger } from "@chakra-ui/react";
 import RepoDetails from "./RepoDetails/RepoDetails";
-import React from "react";
 import { IRepository } from "../interfaces/repo.interface";
 
 interface IUserRepoList {

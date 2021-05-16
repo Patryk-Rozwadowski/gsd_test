@@ -9,7 +9,7 @@ import UserCard from "./components/UserCard/UserCard";
 import { cssReset } from "./cssReset";
 import { axiosInstance } from "./API/axiosInstance";
 import { AxiosResponse } from "axios";
-import { IOrganizationCommon, IOrganizationDetails } from "./interfaces/organizations.interface";
+import { IOrganizationCommon } from "./interfaces/organizations.interface";
 import { TextPrimary } from "./components/Typography/Typography.styled";
 import OrganizationDetails from "./components/OrganizationDetails/OrganizationDetails";
 import {
@@ -17,7 +17,6 @@ import {
 	RepoInfoButton,
 	RepoInfoContainer,
 } from "./components/ProfileInformations/ProfileInformations.styled";
-import RepoDetails from "./components/RepoDetails/RepoDetails";
 
 function App() {
 	const [users, setUsers] = useState<IUserCommon[]>();
