@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosParams = {
-	baseURL: process.env.REACT_APP_GH,
+	baseURL: "https://api.github.com",
 };
 
 const axiosInstance = axios.create(axiosParams);
