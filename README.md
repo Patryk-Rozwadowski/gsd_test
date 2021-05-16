@@ -1,10 +1,15 @@
-Live: https://patryk-rozwadowski.github.io/gsd_test/
+## Live: https://patryk-rozwadowski.github.io/gsd_test/
 
 Stack:
 - Typescript
 - React
 - Chakra-ui
 - Styled components emotion
+
+
+### There is a limitation of api requests from Github api side.
+
+
 
 
 # Getting Started with Create React App
