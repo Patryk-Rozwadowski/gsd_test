@@ -3,11 +3,22 @@ import { Avatar, Box, Button, Flex, Popover, PopoverTrigger, Text } from "@chakr
 import { GrContactInfo } from "react-icons/all";
 import ProfileInformations from "../ProfileInformations/ProfileInformations";
 import { PopoverContainer } from "../ProfileInformations/ProfileInformations.styled";
+import styled from "@emotion/styled";
 
 interface IUserCard {
 	avatar_url: string;
 	login: string;
 }
+
+const UserCardButton = styled(Button)`
+	transition: all 300ms;
+	border: 1px solid #222;
+	&:hover {
+		background-color: #222;
+		color: #fff;
+		cursor: pointer;
+	}
+`
 
 const UserCard = ({ avatar_url, login }: IUserCard): JSX.Element => {
 	return (
@@ -20,15 +31,14 @@ const UserCard = ({ avatar_url, login }: IUserCard): JSX.Element => {
 			<Flex alignItems={"center"} flexDirection={"row"}>
 				<Popover isLazy={true}>
 					<PopoverTrigger>
-						<Button
+						<UserCardButton
 							border={0}
 							backgroundColor={"#fff"}
 							width={"100%"}
 							h={"20px"}
-							leftIcon={<GrContactInfo />}
 						>
-							Repos
-						</Button>
+							Repos Info
+						</UserCardButton>
 					</PopoverTrigger>
 					<PopoverContainer>
 						<ProfileInformations login={login} />

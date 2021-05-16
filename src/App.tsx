@@ -9,7 +9,7 @@ import { cssReset } from "./cssReset";
 import { axiosInstance } from "./API/axiosInstance";
 import { AxiosResponse } from "axios";
 import { IOrganizationCommon } from "./interfaces/organizations.interface";
-import { TextPrimary } from "./components/Typography/Typography.styled";
+import {TextHeader, TextPrimary } from "./components/Typography/Typography.styled";
 import OrganizationDetails from "./components/OrganizationDetails/OrganizationDetails";
 import {
 	PopoverContainer,
@@ -37,7 +37,9 @@ function App() {
 			<div className="App">
 				<header className="App-header">
 					<Box w={"75%"} m={"0 auto"}>
-						<Grid templateColumns="repeat(3, 2fr)" gap={6}>
+						<TextHeader textAlign={"center"} m={"50px 0"}>Users & Repos</TextHeader>
+
+						<Grid templateColumns="repeat(5, 1fr)" gap={6}>
 							{!users ? (
 								<ClipLoader />
 							) : (
@@ -46,7 +48,10 @@ function App() {
 									return <UserCard login={login} avatar_url={avatar_url} key={index} />;
 								})
 							)}
+						</Grid>
 
+							<TextHeader textAlign={"center"} m={"50px 0"}>Organizations</TextHeader>
+						<Grid templateColumns="repeat(3, 1fr)" gap={6}>
 							{!organizations ? (
 								<ClipLoader />
 							) : (
