@@ -38,7 +38,7 @@ const UserCard = ({ avatar_url, login }: IUserCard): JSX.Element => {
 							h={"20px"}
 							leftIcon={<GrContactInfo />}
 						>
-							Profile
+							Repos
 						</Button>
 					</PopoverTrigger>
 					<PopoverContainer>

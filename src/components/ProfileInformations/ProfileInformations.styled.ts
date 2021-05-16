@@ -1,12 +1,7 @@
-import styled from "@emotion/styled";
 import { PopoverContent } from "@chakra-ui/react";
-import { ITheme } from "../../interfaces/theme.interface";
-import { PopoverContentProps } from "@chakra-ui/popover/dist/types/popover";
+import styled from "@emotion/styled";
 
-interface ProfileInformationsStyled extends PopoverContentProps {
-	theme?: Partial<ITheme>;
-}
-const PopoverContainer = styled(PopoverContent)<ProfileInformationsStyled>`
+const PopoverContainer = styled(PopoverContent)<any>`
 	background-color: #fff;
 	border: 1px solid ${({ theme }) => theme.colors.border};
 `;
