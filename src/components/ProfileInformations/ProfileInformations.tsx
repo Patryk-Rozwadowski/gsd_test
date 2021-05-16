@@ -12,7 +12,6 @@ import UserRepoList from "../UserRepoList";
 const ProfileInformations = ({ login }: Partial<IUserDetailed>): JSX.Element => {
 	const [fetched, setFetched] = useState<boolean>(false);
 	const [userInformation, setUserInformation] = useState<IUserDetailed>();
-	const [repoPullRequestsInformation, setRepoPullRequestsInformation] = useState();
 	const [repos, setRepos] = useState<IRepository[]>();
 
 	useEffect(() => {

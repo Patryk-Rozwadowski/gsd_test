@@ -10,25 +10,30 @@ import {
 	IOrganizationRepo,
 } from "../../interfaces/organizations.interface";
 
-const OrganizationDetails = ({ organization }) => {
+interface IOrganizationDetailsProps {
+	organization: IOrganizationCommon;
+}
+
+const OrganizationDetails = ({ organization }: IOrganizationDetailsProps) => {
 	const [organizationsDetails, setOrganizationsDetails] = useState<IOrganizationDetails>();
 	const [organizationMembers, setOrganizationMembers] = useState<IMember[]>();
 	const [organizationRepos, setOrganizationRepos] = useState<IOrganizationRepo[]>();
 	useEffect(() => {
+		debugger;
 		axiosInstance
-			.get(`/orgs/${organization}`)
+			.get(`/orgs/${organization.login}`)
 			.then(({ data }: AxiosResponse<IOrganizationDetails>) => {
 				setOrganizationsDetails(data);
 			});
 
 		axiosInstance
-			.get(`/orgs/${organization}/members`)
+			.get(`/orgs/${organization.login}/repos`)
 			.then(({ data }: AxiosResponse<IOrganizationRepo[]>) => {
 				setOrganizationRepos(data);
 			});
 
 		axiosInstance
-			.get(`/orgs/${organization}/repos`)
+			.get(`/orgs/${organization.login}/members`)
 			.then(({ data }: AxiosResponse<IMember[]>) => {
 				setOrganizationMembers(data);
 			});
@@ -37,10 +42,11 @@ const OrganizationDetails = ({ organization }) => {
 		<Box border={"1px solid #222"}>
 			{organizationsDetails && (
 				<>
-					{/*<TextPrimary>{organizationsDetails.login}</TextPrimary>*/}
-					{/*<TextPrimary>{organizationsDetails.numberOfusers}</TextPrimary>*/}
-					<TextPrimary>Organization repos: {organizationMembers?.length}</TextPrimary>
+					<TextPrimary>Name: {organizationsDetails.login}</TextPrimary>
+					<TextPrimary>Number of members: {organizationMembers?.length}</TextPrimary>
+					<TextPrimary>Number of repos: {organizationsDetails.public_repos}</TextPrimary>
 					<TextPrimary>
+						Created at:{" "}
 						{new Date(organizationsDetails?.created_at).toISOString().slice(0, 10)}
 					</TextPrimary>
 				</>
