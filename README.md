@@ -1,3 +1,12 @@
+Live: https://patryk-rozwadowski.github.io/gsd_test/
+
+Stack:
+- Typescript
+- React
+- Chakra-ui
+- Styled components emotion
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
